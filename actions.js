@@ -62,7 +62,7 @@ export function connectLocalStorage() {
 export function setOwnerAddress(address) {
   if (address !== this.ownerAddress) {
     // convert address to lower case: https://web3js.readthedocs.io/en/1.0/web3-eth.html#note-on-checksum-addresses
-    this.ownerAddress = address.toLowerCase();
+    this.ownerAddress = address ? address.toLowerCase() : '';
     this.getOwnerCats(this.ownerAddress);
   }
 }

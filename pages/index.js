@@ -11,12 +11,19 @@ class Index extends Component {
   state = { metaMaskAccount: null };
   async componentDidMount() {
     const accounts = await web3.eth.getAccounts();
-    this.setState({ metaMaskAccount: accounts[0].toLowerCase() });
+    if (accounts[0]) {
+      this.setState({ metaMaskAccount: accounts[0].toLowerCase() });
+    }
   }
   render() {
     return (
       <Layout>
-        <h3> {`Cats at address: ${store.ownerAddress}`}</h3>
+        <h3>
+          {' '}
+          {store.ownerAddress
+            ? `Cats at address: ${store.ownerAddress}`
+            : 'Sign in to Metamask for all the features'}
+        </h3>
         <h3>{store.noCatsMesage}</h3>
         {store.fetchingCats ? (
           <Loader active inline="centered" />
